@@ -5,5 +5,5 @@ import (
 )
 
 func findEmails() {
-	fmt.Println("finding your emails...")
+	fmt.Println("searching for emails in ")
 }
