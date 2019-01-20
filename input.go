@@ -10,5 +10,5 @@ func parseInput() {
 	if err != nil {
 		fmt.Println("Problem reading from your clipboard\n: ", err)
 	}
-	fmt.Println("clipboard contents: ", content)
+	fmt.Println("clipboard contents: \n", content)
 }
