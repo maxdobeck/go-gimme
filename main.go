@@ -9,7 +9,9 @@ func main() {
 	flag.Parse()
 
 	if *input == "clipboard" {
-		parseInput()
+		parseClipboard()
+	} else if *input != "clipboard" {
+		parseFile(*input)
 	} else if *emails == true {
 		findEmails()
 	} else {
