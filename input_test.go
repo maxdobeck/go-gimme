@@ -10,7 +10,7 @@ func TestClipboardIsReachable(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	content := parseClipboard()
+	content := getClipboard()
 	if content != "This should be in the OS clipboard" {
 		t.Fatalf("String in clipboard doesn't match the expected result")
 	}

@@ -3,16 +3,22 @@ package main
 import (
 	"fmt"
 	"github.com/atotto/clipboard"
+	"os"
 )
 
-func parseClipboard() {
+func getClipboard() string {
 	content, err := clipboard.ReadAll()
 	if err != nil {
 		fmt.Println("Problem reading from your clipboard\n: ", err)
 	}
-	fmt.Println("clipboard contents: \n", content)
+	return content
 }
 
-func parseFile(path string) {
-	fmt.Println(path)
+func validateFP(file string) {
+	fmt.Println("attempting to open: ", file)
+	fp, err := os.Open(file)
+	if err != nil {
+		fmt.Println("Problem opening file.  Verify file path or that file exists.  Erro:\n", err)
+	}
+	defer fp.Close()
 }

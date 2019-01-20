@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
-import "flag"
+import (
+	"flag"
+)
 
 func main() {
 	emails := flag.Bool("emails", false, "Find all emails.  Defaults to false.")
@@ -9,12 +10,14 @@ func main() {
 	flag.Parse()
 
 	if *input == "clipboard" {
-		parseClipboard()
-	} else if *input != "clipboard" {
-		parseFile(*input)
-	} else if *emails == true {
-		findEmails()
+		content := getClipboard()
+		if *emails == true {
+			parseClipboardForEmails(&content)
+		}
 	} else {
-		fmt.Println("gimme: Use -h to get help.")
+		validateFP(*input)
+		if *emails == true {
+			parseFileForEmails(*input)
+		}
 	}
 }
