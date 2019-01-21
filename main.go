@@ -2,22 +2,25 @@ package main
 
 import (
 	"flag"
+	"fmt"
 )
 
 func main() {
 	emails := flag.Bool("emails", false, "Find all emails.  Defaults to false.")
-	input := flag.String("input", "clipboard", "Specify the input file.  Defaults to your clipboard.")
+	input := flag.String("f", "clipboard", "Specify the input file.  Defaults to your clipboard.")
 	flag.Parse()
 
 	if *input == "clipboard" {
 		content := getClipboard()
 		if *emails == true {
-			parseClipboardForEmails(&content)
+			parseClipboard(&content)
 		}
 	} else {
-		validateFP(*input)
 		if *emails == true {
-			parseFileForEmails(*input)
+			err := parseFile(*input)
+			if err != nil {
+				fmt.Println(err)
+			}
 		}
 	}
 }
