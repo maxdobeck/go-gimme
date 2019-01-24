@@ -16,6 +16,7 @@ func parseFile(file string) error {
 		return err
 	}
 	defer fp.Close()
+
 	content, err := ioutil.ReadAll(fp)
 	if err != nil {
 		return err
