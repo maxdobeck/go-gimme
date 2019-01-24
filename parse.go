@@ -4,10 +4,22 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
-func parseClipboard(source *string) {
-	fmt.Println("searching for emails in:\n", *source)
+// parseClipboard finds stuff in the system clipboard
+func parseClipboard() (map[string][]string, error) {
+	found := make(map[string][]string)
+	src := getClipboard()
+	fmt.Println("Found these potential emails: ")
+	words := strings.Fields(src)
+	for _, word := range words {
+		if strings.ContainsRune(word, 64) {
+			found["email"] = append(found["email"], word)
+		}
+	}
+	fmt.Println(found["email"])
+	return found, nil
 }
 
 func parseFile(file string) error {

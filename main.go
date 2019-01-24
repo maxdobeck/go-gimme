@@ -19,9 +19,10 @@ func main() {
 			}
 		}
 	} else {
-		content := getClipboard()
 		if *emails == true {
-			parseClipboard(&content)
+			found, err := parseClipboard()
+			check(err)
+			fmt.Println(found["email"])
 		}
 	}
 
@@ -31,5 +32,11 @@ func main() {
 func help(emails *bool) {
 	if *emails == false && len(flag.Args()) < 1 {
 		fmt.Println("gimme: gets you stuff from data.  use gimme -h for help.")
+	}
+}
+
+func check(e error) {
+	if e != nil {
+		panic(e)
 	}
 }
