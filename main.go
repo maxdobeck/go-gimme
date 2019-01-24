@@ -24,6 +24,7 @@ func main() {
 			parseClipboard(&content)
 		}
 	}
+
 	help(emails)
 }
 
