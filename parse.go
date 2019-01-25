@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
 	"strings"
@@ -11,14 +10,12 @@ import (
 func parseClipboard() (map[string][]string, error) {
 	found := make(map[string][]string)
 	src := getClipboard()
-	fmt.Println("Found these potential emails: ")
 	words := strings.Fields(src)
 	for _, word := range words {
 		if strings.ContainsRune(word, 64) {
 			found["email"] = append(found["email"], word)
 		}
 	}
-	fmt.Println(found["email"])
 	return found, nil
 }
 
@@ -41,6 +38,5 @@ func parseFile(file string) (map[string][]string, error) {
 			found["email"] = append(found["email"], word)
 		}
 	}
-	fmt.Println(found["email"])
 	return found, nil
 }
