@@ -13,10 +13,11 @@ func main() {
 	// decide to get data from clipboard or a supplied file
 	if *input != "clipboard" {
 		if *emails == true {
-			err := parseFile(*input)
+			found, err := parseFile(*input)
 			if err != nil {
 				fmt.Println(err)
 			}
+			fmt.Println(found["email"])
 		}
 	} else {
 		if *emails == true {
